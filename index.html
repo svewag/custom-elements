@@ -1,0 +1,37 @@
+<html>
+  <body>
+    <sc-slider count="5"></sc-slider>
+
+    <script>
+      class Slider extends HTMLElement {
+        constructor() {
+          super()
+
+          const count = this.getAttribute('count')
+
+          const div = document.createElement('div')
+          div.innerHTML = '<img src="https://picsum.photos/500/500" />'.repeat(count)
+
+          const style = document.createElement('style')
+          style.innerHTML = `
+            div {
+              display: flex;
+              overflow-x: scroll;
+              scroll-snap-type: x mandatory;
+              width: 500px;
+            }
+            img {
+              scroll-snap-align: start;
+            }
+          `
+
+          const shadowDOM = this.attachShadow({ mode: 'open' })
+          shadowDOM.appendChild(style)
+          shadowDOM.appendChild(div)
+        }
+      }
+
+      customElements.define('sc-slider', Slider)
+    </script>
+  </body>
+</html>
