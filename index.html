@@ -9,8 +9,16 @@
 
           const count = this.getAttribute('count')
 
+          const images = []
+
+          let i = 0
+
+          while(i++ < count){
+            images.push(`<img src="https://picsum.photos/500/500?random=${i}" />`)
+          }
+
           const div = document.createElement('div')
-          div.innerHTML = '<img src="https://picsum.photos/500/500" />'.repeat(count)
+          div.innerHTML = images.join('')
 
           const style = document.createElement('style')
           style.innerHTML = `
